@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ConnectPhoenix">
+    <output-path>$PROJECT_DIR$/out/artifacts/ConnectPhoenix</output-path>
+    <root id="archive" name="ConnectPhoenix.jar">
+      <element id="module-output" name="ConnectPhoenix" />
+    </root>
+  </artifact>
+</component>
