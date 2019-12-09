@@ -11,11 +11,6 @@ import java.util.Properties;
 
 public class Main {
 
-    //private static final String URL = "jdbc:phoenix:a1.fyre.ibm.com,aa1.fyre.ibm.com,hurds1.fyre.ibm.com:2181:/hbase-secure";
-    //private static final String KERBEROS = ":sb@FYRE.NET:/home/sbartkowski/bin/keytabs/sbfyre.keytab";
-
-//    private static final String URL = "jdbc:phoenix:a1.fyre.ibm.com,aa1.fyre.ibm.com,hurds1.fyre.ibm.com:2181:/hbase-secure";
-//    private static final String KERBEROS = ":sb@FYRE.NET:/home/sbartkowski/bin/keytabs/sbfyre.keytab";
 
     private static final String LISTTABLES = "select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG";
     private static final String URL = "url";
