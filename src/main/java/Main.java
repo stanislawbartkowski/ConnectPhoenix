@@ -36,7 +36,7 @@ public class Main {
         Properties p = new Properties();
         p.load(new FileInputStream(pname));
         String url = p.getProperty(URL) + ((p.getProperty(KERBEROS) != null) ? ":" + p.getProperty(KERBEROS) : "");
-        P("Connecting to" + url);
+        P("Connecting to " + url);
         return url;
     }
 
