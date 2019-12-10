@@ -43,6 +43,6 @@ Copy *sh/template/param.properties* and *sh/template/log4j.properties* to *sh* d
 * VM options: -Dlog4j.configuration=file:sh/log4j.properties 
 * Program arguments: sh/param.properties
 
-Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's vary important, otherwise the program will not be able to access Phoenix server.
+Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's very important, otherwise the program will not be able to access Phoenix server.
 
 
