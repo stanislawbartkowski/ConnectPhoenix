@@ -26,7 +26,7 @@ query | Optional, a sample query to run | SELECT COUNT(\*) FROM SYSTEM.CATALOG
 update | Optional, a sample update statement | create table test (mykey integer not null primary key, mycolumn varchar)
 
 # Test
-The program is connecting to Phoenix server, outputting the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, execute *query* and *update* statements found in *param.properties* file.<br>
+The program is connecting to Phoenix server, outputs the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, executes *query* and *update* statements found in *param.properties* file.<br>
 The program is accepting a single parameter, path to *param.properties* file.<br>
 Troubleshooting: change to logging level to *DEBUG* in *log4j.properties* file.<br>
 In Kerberized environment, obtain valid Kerberos keytab file.<br>
