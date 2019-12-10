@@ -96,3 +96,9 @@ sqlline version 1.2.0
 0: jdbc:phoenix:> 
 
 ```
+## Jupyter notebook
+The Phoenix service should be already configured as a part of JDBC kernel.
+```
+%jdbc(phoenix)
+select DISTINCT("TABLE_NAME") from SYSTEM.CATALOG;
+```
