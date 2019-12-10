@@ -110,4 +110,4 @@ WARN [2019-12-05 22:20:15,370] ({pool-3-thread-2} NotebookServer.java[afterStatu
         at org.apache.zeppelin.jdbc.JDBCInterpreter.interpret(JDBCInterpreter.java:801)
 
 ```
-To track down the problem, it is necessary to increase Zeppelin log level. Zeppelin->Configs->Advanced zeppelin-log4j-properties. Then tail */var/log/zeppelin/zeppelin....log* file. Usually, the problem boils down to assign proper privileges in HBase. It can be accomplished in a friendly way through Ranger UI.
+To track down the problem, it is necessary to increase Zeppelin log level (*Zeppelin->Configs->Advanced zeppelin-log4j-properties*). Then tail */var/log/zeppelin/zeppelin....log* file. Usually, the problem boils down to assign proper privileges in HBase. It can be accomplished in a friendly way through Ranger UI.
