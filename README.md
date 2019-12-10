@@ -1,6 +1,6 @@
 # ConnectPhoenix
 
-It is the example how to connect and run simple queries againt Phoenix service in Kerberized environment. Phoenix is SQL engine on the top of Apache HBase.
+It is the example of how to connect and run simple queries against Phoenix service in a Kerberized environment. Phoenix is a SQL engine on the top of Apache HBase.
 https://phoenix.apache.org/server.html<bt>
 The solution can be executed as Intellij IDEA project or as a standalone test.
 
@@ -26,11 +26,11 @@ query | Optional, a sample query to run | SELECT COUNT(\*) FROM SYSTEM.CATALOG
 update | Optional, a sample update statement | create table test (mykey integer not null primary key, mycolumn varchar)
 
 # Test
-The program is connecting to Phoenix server, outputing the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, execute *query* and *update* statements found in *param.properties* file.<br>
+The program is connecting to Phoenix server, outputting the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, execute *query* and *update* statements found in *param.properties* file.<br>
 The program is accepting a single parameter, path to *param.properties* file.<br>
-Troubleshooting: change to looging level to *DEBUG* in *log4j.properties* file.<br>
-In Kerberized environment, obtain valid Kerbers keytab file.<br>
-If test passes, there should be outputed the list of Phoenix tables.
+Troubleshooting: change to logging level to *DEBUG* in *log4j.properties* file.<br>
+In Kerberized environment, obtain valid Kerberos keytab file.<br>
+If the test passes, there should be outputted the list of Phoenix tables.
 ```
 CATALOG
 FUNCTION
@@ -53,7 +53,7 @@ Copy *sh/template/param.properties* and *sh/template/log4j.properties* to *sh* d
 * VM options: -Dlog4j.configuration=file:sh/log4j.properties 
 * Program arguments: sh/param.properties
 
-Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's very important, otherwise the program will not be able to access Phoenix server.
+Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's very important, otherwise, the program will not be able to access Phoenix server.
 
 # Run the test as a standalone application
 ## Clone the repository
@@ -97,8 +97,19 @@ sqlline version 1.2.0
 
 ```
 ## Jupyter notebook
-The Phoenix service should be already configured as a part of JDBC kernel.
+The Phoenix SQL service should be already configured as a part of JDBC interpreter.
 ```
 %jdbc(phoenix)
 select DISTINCT("TABLE_NAME") from SYSTEM.CATALOG;
 ```
+### Jupyter troubleshooting
+```
+WARN [2019-12-05 22:20:15,370] ({pool-3-thread-2} NotebookServer.java[afterStatusChange]:2302) - Job 20191128-100737_189998758 is finished, status: ERROR, exception: null, result: %text org.apache.zeppelin.interpreter.InterpreterException: Error in doAs
+        at org.apache.zeppelin.jdbc.JDBCInterpreter.getConnection(JDBCInterpreter.java:464)
+        at org.apache.zeppelin.jdbc.JDBCInterpreter.executeSql(JDBCInterpreter.java:673)
+        at org.apache.zeppelin.jdbc.JDBCInterpreter.interpret(JDBCInterpreter.java:801)
+
+```
+To track down the problem, it is necessary to increase Zeppelin log level. Zeppelin->Configs->Advanced zeppelin-log4j-properties. Then tail */var/log/zeppelin/zeppelin....log* file. Usually, the problem boils down to assign proper privileges in HBase. It can be accomplished in a friendly way through Ranger UI.
+
+
