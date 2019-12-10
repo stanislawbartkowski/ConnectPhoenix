@@ -29,7 +29,16 @@ update | Optional, a sample update statement | create table test (mykey integer 
 The program is connecting to Phoenix server, outputing the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, execute *query* and *update* statements found in *param.properties* file.<br>
 The program is accepting a single parameter, path to *param.properties* file.<br>
 Troubleshooting: change to looging level to *DEBUG* in *log4j.properties* file.<br>
-In Kerberized environment, obtain valid Kerbers keytab file.
+In Kerberized environment, obtain valid Kerbers keytab file.<br>
+If test passes, there should be outputed the list of Phoenix tables.
+```
+CATALOG
+FUNCTION
+LOG
+SEQUENCE
+STATS
+TEST
+```
 
 # Run as Intellij IDEA project
 ## Clone the project
