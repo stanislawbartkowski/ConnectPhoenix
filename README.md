@@ -44,7 +44,7 @@ TEST
 ## Clone the project
 Clone to project into Intellij IDEA.
 ## Copy hadoop and hbase configuration data
-From target Hadoop (HDP) environment, copy *hadoop/conf* and *hbase/conf* directories. Create a directory structure.
+From target Hadoop (HDP) environment, copy */etc/hadoop/conf* and */etc/hbase/conf* directories. Create a directory structure.
 * sh/hadoop/conf
 * sh/hbase/conf
 ## Copy templates and modify
