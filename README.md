@@ -74,12 +74,7 @@ That's very simple, just run *phoenix-sqlline* command. It's should be already l
 Setting property: [incremental, false]
 Setting property: [isolation, TRANSACTION_READ_COMMITTED]
 issuing: !connect jdbc:phoenix: none none org.apache.phoenix.jdbc.PhoenixDriver
-Connecting to jdbc:phoenix:
-SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/phoenix/phoenix-5.0.0.3.1.4.0-315-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
-19/12/10 17:19:19 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+...........
 Connected to: Phoenix (version 5.0)
 Driver: PhoenixEmbeddedDriver (version 5.0)
 Autocommit status: true
