@@ -66,3 +66,38 @@ Modify *param.templates* and *env.rc* configuration files.
 
 ## Run the test
 > ./run.sh
+----------
+# How to get access to Phoenix JDBC SQL en gine
+## Command line
+That's very simple, just run *phoenix-sqlline* command. It's should be already linked in */usr/bin* directory. In Kerberos environment, obtain Keberos ticked beforehand.
+```
+Setting property: [incremental, false]
+Setting property: [isolation, TRANSACTION_READ_COMMITTED]
+issuing: !connect jdbc:phoenix: none none org.apache.phoenix.jdbc.PhoenixDriver
+Connecting to jdbc:phoenix:
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/phoenix/phoenix-5.0.0.3.1.4.0-315-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+19/12/10 17:19:19 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Connected to: Phoenix (version 5.0)
+Driver: PhoenixEmbeddedDriver (version 5.0)
+Autocommit status: true
+Transaction isolation: TRANSACTION_READ_COMMITTED
+Building list of tables and columns for tab-completion (set fastconnect to true to skip)...
+133/133 (100%) Done
+Done
+sqlline version 1.2.0
+0: jdbc:phoenix:> !tables
++------------+--------------+-------------+---------------+----------+------------+----------------------------+-----------------+--------------+-------------+
+| TABLE_CAT  | TABLE_SCHEM  | TABLE_NAME  |  TABLE_TYPE   | REMARKS  | TYPE_NAME  | SELF_REFERENCING_COL_NAME  | REF_GENERATION  | INDEX_STATE  | IMMUTABLE_R |
++------------+--------------+-------------+---------------+----------+------------+----------------------------+-----------------+--------------+-------------+
+|            | SYSTEM       | CATALOG     | SYSTEM TABLE  |          |            |                            |                 |              | false       |
+|            | SYSTEM       | FUNCTION    | SYSTEM TABLE  |          |            |                            |                 |              | false       |
+|            | SYSTEM       | LOG         | SYSTEM TABLE  |          |            |                            |                 |              | true        |
+|            | SYSTEM       | SEQUENCE    | SYSTEM TABLE  |          |            |                            |                 |              | false       |
+|            | SYSTEM       | STATS       | SYSTEM TABLE  |          |            |                            |                 |              | false       |
++------------+--------------+-------------+---------------+----------+------------+----------------------------+-----------------+--------------+-------------+
+0: jdbc:phoenix:> 
+
+```
