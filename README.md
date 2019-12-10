@@ -111,3 +111,16 @@ WARN [2019-12-05 22:20:15,370] ({pool-3-thread-2} NotebookServer.java[afterStatu
 
 ```
 To track down the problem, it is necessary to increase Zeppelin log level (*Zeppelin->Configs->Advanced zeppelin-log4j-properties*). Then tail */var/log/zeppelin/zeppelin....log* file. Usually, the problem boils down to assign proper privileges in HBase. It can be accomplished in a friendly way through Ranger UI.
+
+## Connect to Ambari Metrics database
+Ambari Metrics Collector is supported by separate HBase and Phoenix service. Even it is configured to keep containers in the HDFS, it uses different instance of HBase/Phoenix services. <br>
+The database can be queried by Phoenix command line utilities.<br>
+Firstly log on the the host where Ambari Metrics Collector and switch to *ams* user.
+> su - ams<br>
+
+Obtain Kerberos ticket.<br>
+> kinit -kt /etc/security/keytabs/ams.collector.keytab amshbase/\<host name\>@FYRE.NET<br>
+
+Point to another *hbase* config directory
+>  export HBASE_CONF_DIR=/etc/ams-hbase/conf<br>
+
