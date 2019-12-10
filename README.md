@@ -45,4 +45,11 @@ Copy *sh/template/param.properties* and *sh/template/log4j.properties* to *sh* d
 
 Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's very important, otherwise the program will not be able to access Phoenix server.
 
+# Run the test as a standalone application
+## Clone the repository
+> git clone https://github.com/stanislawbartkowski/ConnectPhoenix.git
+## Copy and modify the templates
+> cd ConnectPhoenix/sh<br>
+> cp templates/* .<br>
+Modify *param.templates* and *env.rc* configuration files.
 
