@@ -29,6 +29,7 @@ update | Optional, a sample update statement | create table test (mykey integer 
 The program is connecting to Phoenix server, outputing the tables found (select DISTINCT(\"TABLE_NAME\") from SYSTEM.CATALOG") and, optionally, execute *query* and *update* statements found in *param.properties* file.<br>
 The program is accepting a single parameter, path to *param.properties* file.<br>
 Troubleshooting: change to looging level to *DEBUG* in *log4j.properties* file.<br>
+In Kerberized environment, obtain valid Kerbers keytab file.
 
 # Run as Intellij IDEA project
 ## Clone the project
@@ -51,5 +52,8 @@ Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. That's very importan
 ## Copy and modify the templates
 > cd ConnectPhoenix/sh<br>
 > cp templates/* .<br>
+
 Modify *param.templates* and *env.rc* configuration files.
 
+## Run the test
+> ./run.sh
