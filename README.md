@@ -121,6 +121,43 @@ Firstly log on the the host where Ambari Metrics Collector and switch to *ams* u
 Obtain Kerberos ticket.<br>
 > kinit -kt /etc/security/keytabs/ams.collector.keytab amshbase/\<host name\>@FYRE.NET<br>
 
-Point to another *hbase* config directory
+Point to another *hbase* config directory related to Ambari Metrics Collector.
 >  export HBASE_CONF_DIR=/etc/ams-hbase/conf<br>
+
+Run Phoenix command line and include in the URL the Zookeeper znode specific to Ambari Metrics Collector.
+
+> /usr/hdp/3.1.4.0-315/phoenix/bin/sqlline.py /<Zookeeper quorum/>:/ams-hbase-secure<br>
+```
+Setting property: [incremental, false]
+Setting property: [isolation, TRANSACTION_READ_COMMITTED]
+issuing: !connect jdbc:phoenix:a1.fyre.ibm.com,aa1.fyre.ibm.com,hurds1.fyre.ibm.com:/ams-hbase-secure none none org.apache.phoenix.jdbc.PhoenixDriver
+Connecting to jdbc:phoenix:a1.fyre.ibm.com,aa1.fyre.ibm.com,hurds1.fyre.ibm.com:/ams-hbase-secure
+SLF4J: Class path contains multiple SLF4J bindings.
+...............
+ !tables
++------------+--------------+-------------------------------+---------------+----------+------------+----------------------------+----------------+
+| TABLE_CAT  | TABLE_SCHEM  |          TABLE_NAME           |  TABLE_TYPE   | REMARKS  | TYPE_NAME  | SELF_REFERENCING_COL_NAME  | REF_GENERATION |
++------------+--------------+-------------------------------+---------------+----------+------------+----------------------------+----------------+
+|            | SYSTEM       | CATALOG                       | SYSTEM TABLE  |          |            |                            |                |
+|            | SYSTEM       | FUNCTION                      | SYSTEM TABLE  |          |            |                            |                |
+|            | SYSTEM       | LOG                           | SYSTEM TABLE  |          |            |                            |                |
+|            | SYSTEM       | SEQUENCE                      | SYSTEM TABLE  |          |            |                            |                |
+|            | SYSTEM       | STATS                         | SYSTEM TABLE  |          |            |                            |                |
+|            |              | CONTAINER_METRICS             | TABLE         |          |            |                            |                |
+|            |              | HOSTED_APPS_METADATA_UUID     | TABLE         |          |            |                            |                |
+|            |              | INSTANCE_HOST_METADATA        | TABLE         |          |            |                            |                |
+|            |              | METRICS_METADATA_UUID         | TABLE         |          |            |                            |                |
+|            |              | METRIC_AGGREGATE_DAILY_UUID   | TABLE         |          |            |                            |                |
+|            |              | METRIC_AGGREGATE_HOURLY_UUID  | TABLE         |          |            |                            |                |
+|            |              | METRIC_AGGREGATE_MINUTE_UUID  | TABLE         |          |            |                            |                |
+|            |              | METRIC_AGGREGATE_UUID         | TABLE         |          |            |                            |                |
+|            |              | METRIC_RECORD_DAILY_UUID      | TABLE         |          |            |                            |                |
+|            |              | METRIC_RECORD_HOURLY_UUID     | TABLE         |          |            |                            |                |
+|            |              | METRIC_RECORD_MINUTE_UUID     | TABLE         |          |            |                            |                |
+|            |              | METRIC_RECORD_UUID            | TABLE         |          |            |                            |                |
+|            |              | METRIC_TRANSIENT              | TABLE         |          |            |                            |                |
++------------+--------------+-------------------------------+---------------+----------+------------+----------------------------+----------------+
+
+```
+
 
