@@ -1,7 +1,7 @@
 # ConnectPhoenix
 
-It is the example of how to connect and run simple queries against Phoenix service in a Kerberized environment.<br> Phoenix is a SQL engine on the top of Apache HBase.
-https://phoenix.apache.org/server.html<bt>
+It is the example of how to connect and run simple queries against Phoenix service in a Kerberized environment.<br> Phoenix is a SQL engine on the top of Apache HBase.<br>
+https://phoenix.apache.org/server.html<br>
 The solution can be executed as Intellij IDEA project or as a standalone test.
 
 # Files description
