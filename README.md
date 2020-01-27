@@ -67,7 +67,7 @@ Modify *param.templates* and *env.rc* configuration files.
 ## Run the test
 > ./run.sh
 ----------
-# How to get access to Phoenix JDBC SQL en gine
+# How to get access to Phoenix JDBC SQL engine
 ## Command line
 That's very simple, just run *phoenix-sqlline* command. It's should be already linked in */usr/bin* directory. In Kerberos environment, obtain Keberos ticked beforehand.
 ```
@@ -114,7 +114,7 @@ To track down the problem, it is necessary to increase Zeppelin log level (*Zepp
 
 ## Connect to Ambari Metrics database
 Ambari Metrics Collector is supported by separate HBase and Phoenix service. Even it is configured to keep containers in the HDFS, it uses different instance of HBase/Phoenix services. <br>
-The database can be queried by Phoenix command line utilities.<br>
+The database can be queried by Phoenix command line utility.<br>
 Firstly log on the the host where Ambari Metrics Collector and switch to *ams* user.
 > su - ams<br>
 
