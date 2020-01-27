@@ -118,11 +118,11 @@ Done
 sqlline version 1.2.0
 0: jdbc:phoenix:thin:url=http://mdp2:8765> 
 ```
-<br>
 Troubleshooting<br>
 Problem:<br>
 *phoenix-sqlline-think* is stuck and prompt is not available. <br>
 In the *phoenix* log file are repeating entries like<br>
+
 ```
 2020-01-28 00:11:19,900 INFO org.apache.hadoop.hbase.client.RpcRetryingCallerImpl: Call exception, tries=23, retries=36, started=290638 ms ago, cancelled=false, msg=Connection closed, details=row 'SYSTEM:CATALOG' on table 'hbase:meta' at region=hbase:meta,,1.1588230740, hostname=mdp3.sb.com,16020,1580165834898, seqNum=-1
 ```
