@@ -96,7 +96,39 @@ sqlline version 1.2.0
 0: jdbc:phoenix:> 
 
 ```
-## Jupyter notebook
+## Phoenix Query Server and thin client
+Alternative method to access Phoenix SQL engine and Phoenix Query Server and think client (https://phoenix.apache.org/server.html).<br>
+Prerequisites.<br>
+* Install Phoenix Query Server on one of the HDP nodes. It is not necessary to be HBase Master node.
+* Verify the *hadoop.proxyuser.HTTP.groups* in HDFS configuration panel. Replace default *users* with proper group or simply insert \* (star).
+Launch<br>
+> phoenix-sqlline-thin \<Phoenix Query Server\>
+```
+Setting property: [incremental, false]
+Setting property: [isolation, TRANSACTION_READ_COMMITTED]
+issuing: !connect jdbc:phoenix:thin:url=http://mdp2:8765;serialization=PROTOBUF;authentication=SPNEGO none none org.apache.phoenix.queryserver.client.Driver
+Connecting to jdbc:phoenix:thin:url=http://mdp2:8765;serialization=PROTOBUF;authentication=SPNEGO
+Connected to: Apache Phoenix (version unknown version)
+Driver: Phoenix Remote JDBC Driver (version unknown version)
+Autocommit status: true
+Transaction isolation: TRANSACTION_READ_COMMITTED
+Building list of tables and columns for tab-completion (set fastconnect to true to skip)...
+135/135 (100%) Done
+Done
+sqlline version 1.2.0
+0: jdbc:phoenix:thin:url=http://mdp2:8765> 
+```
+<br>
+Troubleshooting<br>
+Problem:<br>
+*phoenix-sqlline-think* is stuck and prompt is not available. <br>
+In the *phoenix* log file are repeating entries like<br>
+```
+2020-01-28 00:11:19,900 INFO org.apache.hadoop.hbase.client.RpcRetryingCallerImpl: Call exception, tries=23, retries=36, started=290638 ms ago, cancelled=false, msg=Connection closed, details=row 'SYSTEM:CATALOG' on table 'hbase:meta' at region=hbase:meta,,1.1588230740, hostname=mdp3.sb.com,16020,1580165834898, seqNum=-1
+```
+Solution<br>
+Phoenix Query Server cannot connect to HBase Master. Verify *hadoop.proxyuser.HTTP.groups* parameter (look above)
+
 The Phoenix SQL service should be already configured as a part of JDBC interpreter.
 ```
 %jdbc(phoenix)
