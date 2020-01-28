@@ -11,6 +11,7 @@ public class Main {
     private static final String QUERY = "query";
     private static final String UPDATE = "update";
     private static final String KERBEROS = "kerberos";
+    private static final String DRIVER = "driver";
 
     private static void P(String s) {
         System.out.println(s);
@@ -61,11 +62,11 @@ public class Main {
 
         if (args.length != 1) help();
         printpath();
-        Class<?> aClass = Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
         P("Property file: " + args[0]);
         Properties prop = new Properties();
         prop.load(new FileInputStream(args[0]));
-
+        P("Driver name : " + prop.getProperty(DRIVER));
+        Class<?> aClass = Class.forName(prop.getProperty(DRIVER));
 
         try (Connection con = DriverManager.getConnection(prepareURL(prop))) {
 
