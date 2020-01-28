@@ -52,9 +52,15 @@ public class Main {
 
     }
 
+    private static void printpath() {
+        for (String s : System.getProperty("java.class.path").split(":"))
+            System.out.println(s);
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
         if (args.length != 1) help();
+        printpath();
         Class<?> aClass = Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
         P("Property file: " + args[0]);
         Properties prop = new Properties();

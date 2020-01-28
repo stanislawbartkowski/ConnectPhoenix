@@ -30,11 +30,18 @@
             <version>5.0.0.3.1.0.6-1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-server-client -->
+        <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-queryserver-client -->
         <dependency>
             <groupId>org.apache.phoenix</groupId>
-            <artifactId>phoenix-server-client</artifactId>
-            <version>4.4.0.2.4.4.1-9</version>
+            <artifactId>phoenix-queryserver-client</artifactId>
+            <version>5.0.0-HBase-2.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.11.1</version>
         </dependency>
 
 
