@@ -58,9 +58,9 @@ Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath.
 * Modules
 * Dependencies (right panel)
 * Add both directories as 
- * Add "Jars or directories"
- * Select Path
- * Select as "Classes"
+  * Add "Jars or directories"
+  * Select Path
+  * Select as "Classes"
 
 # Run the test as a standalone application
 ## Clone the repository
