@@ -2,7 +2,8 @@
 
 It is the example of how to connect and run simple queries against Phoenix service in a Kerberized environment.<br> Phoenix is a SQL engine on the top of Apache HBase.<br>
 https://phoenix.apache.org/server.html<br>
-The solution can be executed as Intellij IDEA project or as a standalone test.
+The solution can be executed as Intellij IDEA project or as a standalone test.<br>
+The test is using full JDBC client or thin client. In order to connect using thin client, Phoenix Query Server should be installed and running.
 
 # Files description
 
@@ -11,7 +12,7 @@ The solution can be executed as Intellij IDEA project or as a standalone test.
 * sh Directory to run the test as standalone
   * sh/run.sh Shell script to execute
   * sh/template Directory with resource files to configure
-    * sh/template/emv.rc Evironment variables used by run.sh script
+    * sh/template/env.rc Evironment variables used by run.sh script
     * sh/template/param.properties Phoenix JDBC URL parameters
     * sh/template/log4j.properties 
     
@@ -21,6 +22,7 @@ https://community.cloudera.com/t5/Community-Articles/Phoenix-JDBC-Client-Setup/t
 Parameter | Description | Sample value
 ------------ | ------------- | -------
 url | Phoenix JDBC URL (without Kerberos) | jdbc:phoenix:a1.fyre.ibm.com,aa1.fyre.ibm.com,hurds1.fyre.ibm.com:2181:/hbase-secure
+driver | Driver name | org.apache.phoenix.jdbc.PhoenixDriver or org.apache.phoenix.queryserver.client.Driver
 kerberos | Kerberos part, format (principal):(path to keytab) | techuser@FYRE.NET:/home/sb/techuser.keytab
 query | Optional, a sample query to run | SELECT COUNT(\*) FROM SYSTEM.CATALOG
 update | Optional, a sample update statement | create table test (mykey integer not null primary key, mycolumn varchar)
@@ -44,16 +46,19 @@ TEST
 ## Clone the project
 Clone to project into Intellij IDEA.
 ## Copy hadoop and hbase configuration data
+This step is necessary only while using full JDBC client.<br>
 From target Hadoop (HDP) environment, copy */etc/hadoop/conf* and */etc/hbase/conf* directories. Create a directory structure.
 * sh/hadoop/conf
 * sh/hbase/conf
 ## Copy templates and modify
-Copy *sh/template/param.properties* and *sh/template/log4j.properties* to *sh* directory. Modify *param.properties* file according to your environmet.
+Copy *sh/template/param.properties* and *sh/template/log4j.properties* to *sh* directory. Modify *param.properties* file according to your environment.<br>
+* For full JDBC client, set *param=driver=org.apache.phoenix.jdbc.PhoenixDriver*<br>
+* For thin client, set *driver=org.apache.phoenix.queryserver.client.Driver*<br>
 ## Prepare the launch configuration
 * VM options: -Dlog4j.configuration=file:sh/log4j.properties 
 * Program arguments: sh/param.properties
 
-Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath. 
+Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath (only JDBC client).
 * Project Structure
 * Modules
 * Dependencies (right panel)
@@ -61,6 +66,25 @@ Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath.
   * Add "Jars or directories"
   * Select Path
   * Select as "Classes"
+  
+## pom.xml
+The *pom.xml* contains dependency for both client, JDBC and thin.<br>
+JDBC client
+```XML
+  <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-client</artifactId>
+            <version>5.0.0.3.1.0.6-1</version>
+  </dependency>
+```
+Thin client
+```XML
+      <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-server-client</artifactId>
+            <version>4.7.0-HBase-1.1</version>
+      </dependency>
+```
 
 # Run the test as a standalone application
 ## Clone the repository
@@ -69,8 +93,15 @@ Add *sh/hadoop/conf* and *sh/hbase/conf* to Java ClassPath.
 > cd ConnectPhoenix/sh<br>
 > cp templates/* .<br>
 
-Modify *param.templates* and *env.rc* configuration files.
-
+Modify *param.properties* and *env.rc* configuration files.
+JDBC client<br>
+*param.properties : driver=org.apache.phoenix.jdbc.PhoenixDriver
+*env.rc : LIB=$LIB:/usr/hdp/current/phoenix-client/*
+<br>
+Think client<br>
+*param.properties : driver=org.apache.phoenix.queryserver.client.Driver
+*env.rc : LIB=/usr/hdp/current/phoenix-server/phoenix-5.0.0.3.1.0.0-78-thin-client.jar
+<br>
 ## Run the test
 > ./run.sh
 ----------
