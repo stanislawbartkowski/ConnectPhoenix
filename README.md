@@ -135,7 +135,7 @@ sqlline version 1.2.0
 
 ```
 ## Phoenix Query Server and thin client
-Alternative method to access Phoenix SQL engine and Phoenix Query Server and think client (https://phoenix.apache.org/server.html).<br>
+Alternative method to access Phoenix SQL engine and Phoenix Query Server is thin client (https://phoenix.apache.org/server.html).<br>
 Prerequisites.<br>
 * Install Phoenix Query Server on one of the HDP nodes. It is not necessary to be HBase Master node.
 * Verify the *hadoop.proxyuser.HTTP.groups* in HDFS configuration panel. Replace default *users* with proper group or simply insert \* (star).
